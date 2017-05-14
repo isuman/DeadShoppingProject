@@ -14,5 +14,5 @@ public interface ProductService {
     Product findById(long id);
     Product addProduct(Product product);
     Product addProduct(Product product, String imageFileName, BufferedImage image) throws IOException;
-    Product getProductForTransfer(String username);
+    Product getProductForTransfer(String name);
 }
