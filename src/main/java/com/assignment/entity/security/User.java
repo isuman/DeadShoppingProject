@@ -1,6 +1,6 @@
 package com.assignment.entity.security;
 
-import camt.cbsd.entity.Student;
+import com.assignment.entity.Product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -62,10 +63,6 @@ public class User {
     @NotNull
     private Date lastPasswordResetDate;
 
-    @OneToOne
-    @JsonBackReference
-    Student student;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_AUTHORITY",
@@ -73,6 +70,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     @JsonManagedReference
     private List<Authority> authorities;
+    ArrayList<Product> cart;
+
 
     public Long getId() {
         return id;
