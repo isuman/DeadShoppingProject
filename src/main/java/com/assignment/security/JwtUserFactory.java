@@ -1,8 +1,8 @@
 package com.assignment.security;
 
 
-import camt.cbsd.entity.security.Authority;
-import camt.cbsd.entity.security.User;
+import com.assignment.entity.security.Authority;
+import com.assignment.entity.security.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

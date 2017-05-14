@@ -1,6 +1,8 @@
 package com.assignment.entity;
 
+import com.assignment.config.json.View;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -15,19 +17,26 @@ import javax.persistence.Id;
 @Entity
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NonNull long id;
-    @NonNull String productid;
-    @NonNull String name;
-    @NonNull String image;
-    @NonNull int productAmount;
-    @NonNull double price;
-    @NonNull String description;
+    @JsonView(View.Login.class)
+    long id;
+    @JsonView(View.Login.class)
+    String productId;
+    @JsonView(View.Login.class)
+    String name;
+    @JsonView(View.Login.class)
+    String image;
+    @JsonView(View.Login.class)
+    int productAmount;
+    @JsonView(View.Login.class)
+    double price;
+    @JsonView(View.Login.class)
+    String description;
 
 
 

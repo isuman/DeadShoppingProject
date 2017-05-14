@@ -8,7 +8,11 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.imageio.ImageIO;
 import javax.ws.rs.*;
@@ -21,7 +25,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,28 +54,26 @@ public class ProductController {
     }
 
     @Autowired
-    public void setStudentService(ProductService productService) {
+    public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getStudents() {
+    public Response getProducts() {
 
         List<Product> products = productService.getProducts();
         return Response.ok(products).build();
     }
 
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getStudent(@PathParam("id") long id) {
+    @GetMapping("/product/{id}")
+    public ResponseEntity<?> getProduct(@PathVariable("id") long id) {
         Product product = productService.findById(id);
         if (product != null)
-            return Response.ok(product).build();
+            return ResponseEntity.ok(product);
         else
             //http code 204
-            return Response.status(Response.Status.NO_CONTENT).build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
     }
 
@@ -131,7 +132,7 @@ public class ProductController {
     @GET
     @Path("/images/{fileName}")
     @Produces({"image/png", "image/jpg", "image/gif"})
-    public Response getStuentImage(@PathParam("fileName") String filename) {
+    public Response getProductImage(@PathParam("fileName") String filename) {
         File file = Paths.get(imageServerDir + filename).toFile();
         if (file.exists()) {
             Response.ResponseBuilder responseBuilder = Response.ok((Object) file);

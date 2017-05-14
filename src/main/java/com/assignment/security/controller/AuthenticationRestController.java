@@ -1,11 +1,11 @@
 package com.assignment.security.controller;
 
-import camt.cbsd.entity.Student;
-import camt.cbsd.security.JwtAuthenticationRequest;
-import camt.cbsd.security.JwtTokenUtil;
-import camt.cbsd.security.JwtUser;
-import camt.cbsd.security.service.JwtAuthenticationResponse;
-import camt.cbsd.services.StudentService;
+import com.assignment.entity.Product;
+import com.assignment.security.JwtAuthenticationRequest;
+import com.assignment.security.JwtTokenUtil;
+import com.assignment.security.JwtUser;
+import com.assignment.security.service.JwtAuthenticationResponse;
+import com.assignment.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ public class AuthenticationRestController {
     @Value("${jwt.header}")
     private String tokenHeader;
 
-    private StudentService studentService;
+    private ProductService ProductService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -58,12 +58,12 @@ public class AuthenticationRestController {
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
-        Student student = studentService.getStudentForTransfer(authenticationRequest.getUsername());
+        Product Product = ProductService.getProductForTransfer(authenticationRequest.getUsername());
 
         // Return the token
         Map result = new HashMap();
         result.put("token",token);
-        result.put("student",student);
+        result.put("Product",Product);
         return ResponseEntity.ok(result);
     }
 

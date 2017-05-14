@@ -39,6 +39,11 @@ public class ProductDaoImpl implements ProductDAO {
         return productRepository.save(product);
     }
 
+    @Override
+    public Product findByUsername(String username) {
+        return productRepository.findByUsername(username);
+    }
+
 
     @Override
     public Integer size() {

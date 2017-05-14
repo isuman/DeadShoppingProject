@@ -1,6 +1,6 @@
 package com.assignment.entity.security;
 
-import camt.cbsd.entity.Student;
+import com.assignment.entity.Product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -64,7 +64,7 @@ public class User {
 
     @OneToOne
     @JsonBackReference
-    Student student;
+    Product product;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

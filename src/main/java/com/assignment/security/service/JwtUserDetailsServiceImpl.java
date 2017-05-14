@@ -1,9 +1,9 @@
 package com.assignment.security.service;
 
 
-import camt.cbsd.entity.security.User;
-import camt.cbsd.security.JwtUserFactory;
-import camt.cbsd.security.repository.UserRepository;
+import com.assignment.entity.security.User;
+import com.assignment.security.JwtUserFactory;
+import com.assignment.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

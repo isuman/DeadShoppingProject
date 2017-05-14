@@ -1,6 +1,6 @@
 package com.assignment.security.repository;
 
-import camt.cbsd.entity.security.Authority;
+import com.assignment.entity.security.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

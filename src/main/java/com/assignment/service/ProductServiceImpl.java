@@ -6,7 +6,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -35,11 +34,20 @@ public class ProductServiceImpl implements ProductService{
     }
 
 
+    @javax.transaction.Transactional
+    @Override
+    public Product getProductForTransfer(String username) {
+        Product product = productDAO.findByUsername(username);
+        return product;
+    }
+
+
     public List<Product> getProducts(){
         List<Product> products = productDAO.getProducts();
 
         return products;
     }
+
     public Product findById(long id) {
 
         Product product = productDAO.findById(id);

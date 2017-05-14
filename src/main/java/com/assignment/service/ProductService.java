@@ -1,12 +1,8 @@
 package com.assignment.service;
 
 import com.assignment.entity.Product;
-import org.springframework.stereotype.Service;
-
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,4 +14,5 @@ public interface ProductService {
     Product findById(long id);
     Product addProduct(Product product);
     Product addProduct(Product product, String imageFileName, BufferedImage image) throws IOException;
+    Product getProductForTransfer(String username);
 }
