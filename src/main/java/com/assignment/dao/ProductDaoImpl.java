@@ -40,13 +40,8 @@ public class ProductDaoImpl implements ProductDAO {
     }
 
     @Override
-<<<<<<< HEAD
     public Product findByName(String name) {
         return productRepository.findByName(name);
-=======
-    public Product findByProductName(String productName) {
-        return productRepository.findByProductName(productName);
->>>>>>> origin/master
     }
 
 

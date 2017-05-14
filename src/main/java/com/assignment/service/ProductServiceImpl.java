@@ -37,13 +37,8 @@ public class ProductServiceImpl implements ProductService{
 
     @Transactional
     @Override
-<<<<<<< HEAD
     public Product getProductForTransfer(String name) {
         Product product = productDAO.findByName(name);
-=======
-    public Product getProductForTransfer(String productName) {
-        Product product = productDAO.findByProductName(productName);
->>>>>>> origin/master
         return product;
     }
 
