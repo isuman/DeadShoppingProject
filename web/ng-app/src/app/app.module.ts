@@ -13,6 +13,7 @@ import {ProductsAddComponent} from "./product/add/product.add.component";
 import {ProductsComponent} from "./product/list/product.list.component";
 import {ProductsViewComponent} from "./product/view/product.view.component";
 import {ProductDataServerService} from "./service/product-data-server.service";
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -22,7 +23,8 @@ import {ProductDataServerService} from "./service/product-data-server.service";
         ProductsComponent,
         ProductsViewComponent,
         MenuComponent,
-   FileNotFoundComponent],
+   FileNotFoundComponent,
+   LoginComponent],
  imports: [BrowserModule,FormsModule, HttpModule,ProductRoutingModule,AppRoutingModule],
  bootstrap: [AppComponent],
   providers:[{ provide:ProductsDataService, useClass: ProductDataServerService}]
