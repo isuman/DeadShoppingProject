@@ -17,12 +17,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +30,7 @@ public class AuthenticationRestController {
     @Value("${jwt.header}")
     private String tokenHeader;
 
-    private ProductService ProductService;
+    private ProductService productService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -58,12 +56,12 @@ public class AuthenticationRestController {
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
-        Product Product = ProductService.getProductForTransfer(authenticationRequest.getUsername());
+        Product product = productService.getProductForTransfer(authenticationRequest.getUsername());
 
         // Return the token
         Map result = new HashMap();
         result.put("token",token);
-        result.put("Product",Product);
+        result.put("product",product);
         return ResponseEntity.ok(result);
     }
 
