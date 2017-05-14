@@ -11,6 +11,10 @@ public interface ProductDAO {
     List<Product> getProducts();
     Product findById(long id);
     Product addProduct(Product product);
+<<<<<<< HEAD
     Product findByName(String name);
+=======
+    Product findByProductName(String username);
+>>>>>>> origin/master
     Integer size();
 }
