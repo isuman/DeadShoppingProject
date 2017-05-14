@@ -36,8 +36,8 @@ public class ProductServiceImpl implements ProductService{
 
     @javax.transaction.Transactional
     @Override
-    public Product getProductForTransfer(String username) {
-        Product product = productDAO.findByUsername(username);
+    public Product getProductForTransfer(String productName) {
+        Product product = productDAO.findByProductName(productName);
         return product;
     }
 

@@ -40,8 +40,8 @@ public class ProductDaoImpl implements ProductDAO {
     }
 
     @Override
-    public Product findByUsername(String username) {
-        return productRepository.findByUsername(username);
+    public Product findByProductName(String productName) {
+        return productRepository.findByProductName(productName);
     }
 
 

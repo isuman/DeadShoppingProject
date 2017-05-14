@@ -11,6 +11,6 @@ public interface ProductDAO {
     List<Product> getProducts();
     Product findById(long id);
     Product addProduct(Product product);
-    Product findByUsername(String username);
+    Product findByProductName(String username);
     Integer size();
 }
