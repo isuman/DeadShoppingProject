@@ -71,6 +71,7 @@ public class DataLoader implements ApplicationRunner {
         productDAO.addProduct(product1);
         productDAO.addProduct(product2);
 
+        securitySetup();
     }
 
     User user1,user2,user3;
