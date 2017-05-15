@@ -14,6 +14,7 @@ import {ProductsViewComponent} from "./product/view/product.view.component";
 import {ProductDataServerService} from "./service/product-data-server.service";
 import { LoginComponent } from './login/login.component';
 import {AuthenticationService} from "./service/authentication.service";
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -24,7 +25,8 @@ import {AuthenticationService} from "./service/authentication.service";
         ProductsViewComponent,
         MenuComponent,
    FileNotFoundComponent,
-   LoginComponent],
+   LoginComponent,
+   CartComponent],
  imports: [BrowserModule,FormsModule, HttpModule,ProductRoutingModule,AppRoutingModule],
  bootstrap: [AppComponent],
   providers:[{ provide:ProductsDataService, useClass: ProductDataServerService},AuthenticationService]
