@@ -25,6 +25,15 @@ spring:
     password:
 ---
 spring:
+    application:
+        name: cruncher
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost/test
+server:
+    port: 9000
+---
+spring:
   profiles: local
 server:
   baseUrl: http://localhost:1000/

@@ -10,11 +10,26 @@ import {ProductsDataService} from "../../service/product.data.service";
 })
 export class ProductsComponent {
   products: Product[];
-
+  search:string;
   constructor (private productsDataService:ProductsDataService, private router: Router){}
   ngOnInit(){
     this.productsDataService.getProductsData()
-      .subscribe(products => this.products= products);
+      .subscribe(products => this.products = products,
+        (error : Error ) => {
+          if (error.message === 'UnAuthorize'){
+            this.router.navigate(['login'],{queryParams:{source:'product'}});
+          }
+        });
+  }
+
+  onSearch(){
+    this.productsDataService.findProduct(this.search)
+      .subscribe(products => this.products = products,
+        (error : Error ) => {
+          if (error.message === 'UnAuthorize'){
+            this.router.navigate(['login'],{queryParams:{source:'product'}});
+          }
+        });
   }
 
   upQuantity(product:Product){

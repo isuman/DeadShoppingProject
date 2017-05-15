@@ -1,5 +1,5 @@
 import {Observable} from "rxjs/Rx";
-import {Response, Http, Headers, RequestOptions} from "@angular/http";
+import {Response, Http, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Product} from "../product/product";
 import {AuthenticationService} from './authentication.service';
@@ -58,6 +58,14 @@ export class ProductDataServerService {
 
   }
 
+  findProduct(search:string){
+    let product: Product;
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('search',search);
+    return this.http.get('http://localhost:8080/products/',{headers:this.headers,search:params})
+      .map(res => res.json());
+
+  }
 
   addProduct(product: Product,file:any) {
     let formData = new FormData();

@@ -21,4 +21,7 @@ export class ProductsDataService {
     return null;
   }
 
+  findProduct(search:string){
+    return null;
+  }
 }
