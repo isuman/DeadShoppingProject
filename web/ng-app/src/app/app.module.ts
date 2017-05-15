@@ -6,7 +6,6 @@ import {HttpModule} from '@angular/http';
 import {FileNotFoundComponent} from "./filenotfound/file-not-found-component";
 import {AppRoutingModule} from "./app-routing.module";
 import {MenuComponent} from "./menu/menu.component";
-import {ProductsDataDBService} from "./service/product.data.db.service";
 import {ProductsDataService} from "./service/product.data.service";
 import {ProductRoutingModule} from "./product/product-routing.module";
 import {ProductsAddComponent} from "./product/add/product.add.component";

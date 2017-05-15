@@ -2,6 +2,7 @@ import {Observable} from "rxjs/Rx";
 import {Response, Http, Headers, RequestOptions} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Product} from "../product/product";
+import {AuthenticationService} from './authentication.service';
 
 
 /**
@@ -9,8 +10,13 @@ import {Product} from "../product/product";
  */
 @Injectable()
 export class ProductDataServerService {
-  constructor(private http: Http) {
+  constructor(private http: Http, private authenticationService: AuthenticationService) {
   }
+
+  private headers = new Headers({
+    'Content-type': 'application/json',
+    'Authorization': 'Bearer ' + this.authenticationService.getToken()
+  });
 
   getProductsData() {
     let productArray: Product[];
