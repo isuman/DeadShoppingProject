@@ -11,9 +11,9 @@ import {ProductsDataService} from "../../service/product.data.service";
 export class ProductsComponent {
   products: Product[];
 
-  constructor (private productDataService:ProductsDataService, private router: Router){}
+  constructor (private productsDataService:ProductsDataService, private router: Router){}
   ngOnInit(){
-    this.productDataService.getProductsData()
+    this.productsDataService.getProductsData()
       .subscribe(products => this.products= products);
   }
 

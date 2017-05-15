@@ -10,7 +10,7 @@ import {ProductsDataService} from "../../service/product.data.service";
 })
 export class ProductsAddComponent {
   product: any = {};
-  constructor(private productDataService: ProductsDataService, private router: Router) {
+  constructor(private productsDataService: ProductsDataService, private router: Router) {
   };
 
   ngOnInit() {
@@ -30,13 +30,13 @@ export class ProductsAddComponent {
     console.log(product)
     let inputEl: HTMLInputElement = this.inputEl.nativeElement;
 
-    this.productDataService.addProduct(product,inputEl.files.item(0))
+    this.productsDataService.addProduct(product,inputEl.files.item(0))
       .subscribe(resultStudent => {
         result = resultStudent
         if (result != null){
           this.router.navigate(['/list']);
         }else{
-          alert("Error in adding the student");
+          alert("Error in adding a product");
         }
       });
   }
