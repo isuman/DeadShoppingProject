@@ -42,14 +42,12 @@ public class DataLoader implements ApplicationRunner {
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
         imageBaseUrl = baseUrl + imageUrl;
-        Product product1 = Product.builder().productId("miku-001").name("miku").image(imageBaseUrl+"Hastune_Miku___S_589aa63ba5689.jpg").productAmount(5).price(20.00).description("miku").build();
-        Product product2 = Product.builder().productId("miku-002").name("miku").image(imageBaseUrl+"Hastune_Miku___S_589aa63ba5689.jpg").productAmount(5).price(20.00).description("miku").build();
-        Product product3 = Product.builder().productId("miku-003").name("miku").image(imageBaseUrl+"Hastune_Miku___S_589aa63ba5689.jpg").productAmount(5).price(20.00).description("miku").build();
+        Product product1 = Product.builder().ProductId("Miku-001").name("miku").image(imageBaseUrl+"Hastune_Miku___S_589aa63ba5689.jpg").ProductAmount(5).price(20.00).description("miku").build();
+        Product product2 = Product.builder().ProductId("Maki-001").name("Maki").image(imageBaseUrl+"Maki_Nishikino_A_5703e3387162a.jpg").ProductAmount(5).price(20.00).description("Maki").build();
 
 
         productDAO.addProduct(product1);
         productDAO.addProduct(product2);
-        productDAO.addProduct(product3);
 
     }
 }

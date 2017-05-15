@@ -26,15 +26,15 @@ public class Product {
     @JsonView(View.Login.class)
     long id;
     @JsonView(View.Login.class)
-    String productId;
+    String ProductId;
     @JsonView(View.Login.class)
     String name;
     @JsonView(View.Login.class)
-    String image;
-    @JsonView(View.Login.class)
-    int productAmount;
+    int ProductAmount;
     @JsonView(View.Login.class)
     double price;
+    @JsonView(View.Login.class)
+    String image;
     @JsonView(View.Login.class)
     String description;
 
