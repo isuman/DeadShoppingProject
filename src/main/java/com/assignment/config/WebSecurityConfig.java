@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.headers().frameOptions().disable();//for check database in h2-console
         httpSecurity
                 // we don't need CSRF because our token is invulnerable
                 .csrf().disable()
