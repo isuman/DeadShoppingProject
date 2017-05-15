@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/add',
+    redirectTo: '/list',
     pathMatch: 'full'
   },
   {path: '**', component: FileNotFoundComponent}
