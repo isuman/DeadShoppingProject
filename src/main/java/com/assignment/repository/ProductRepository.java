@@ -12,4 +12,5 @@ public interface ProductRepository extends CrudRepository<Product,Long> {
     Product findById(long id);
     Product findByName(String name);
     List<Product> findByNameIgnoreCaseContainingOrderByName(String name);
+    List<Product> findByNameIgnoreCase(String searchText);
 }

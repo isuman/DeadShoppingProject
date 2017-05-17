@@ -71,6 +71,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    @Transactional
     public List<Product> queryProduct(String query) {
         if (query == null || query.equals(""))
             return productDAO.getProducts();

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -86,6 +87,7 @@ public class DataLoader implements ApplicationRunner {
                 .lastPasswordResetDate(Date.from(LocalDate.of(2016, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
 
+        user1.setPassword(new BCryptPasswordEncoder().encode(user1.getPassword()));
         user2 = User.builder()
                 .username("customer")
                 .password("customer")
@@ -95,6 +97,7 @@ public class DataLoader implements ApplicationRunner {
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2016, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
+        user2.setPassword(new BCryptPasswordEncoder().encode(user2.getPassword()));
         user3 = User.builder()
                 .username("shop")
                 .password("shop")
@@ -104,6 +107,7 @@ public class DataLoader implements ApplicationRunner {
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2016, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
+        user3.setPassword(new BCryptPasswordEncoder().encode(user3.getPassword()));
 
         Authority auth1 = Authority.builder().name(AuthorityName.ROLE_CUSTOMER).build();
         Authority auth2 = Authority.builder().name(AuthorityName.ROLE_SHOPKEEPER).build();
