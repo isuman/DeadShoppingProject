@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthenticationService} from "../service/authentication.service";
 @Component({
    selector: 'menu',
    templateUrl: './menu.component.html',
@@ -6,4 +7,9 @@ import {Component} from '@angular/core';
 })
 export class MenuComponent {
 
+  constructor(private authenService: AuthenticationService) {
+  }
+  hasRole(role:string){
+    return this.authenService.hasRole(role);
+  }
 }
