@@ -1,12 +1,12 @@
 package com.assignment.config;
 
 
-
 import com.assignment.security.JwtAuthenticationEntryPoint;
 import com.assignment.security.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.headers().frameOptions().disable();
         httpSecurity
                 // we don't need CSRF because our token is invulnerable
                 .csrf().disable()
@@ -60,11 +61,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 .authorizeRequests()
-                /*.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/auth/**","/h2-console/**","/refresh","/product/images/**","/product").permitAll()
-
-                .anyRequest().authenticated();*/
-                .anyRequest().permitAll();
+                .anyRequest().authenticated();
 
         // Custom JWT based security filter
         httpSecurity
