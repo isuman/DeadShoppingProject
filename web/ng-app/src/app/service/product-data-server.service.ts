@@ -20,7 +20,7 @@ export class ProductDataServerService {
 
   getProductsData() {
     let productArray: Product[];
-    return this.http.get('http://localhost:8080/product')
+    return this.http.get("http://localhost:8080/product")
       .map(res => res.json());
 
   }

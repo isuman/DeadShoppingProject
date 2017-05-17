@@ -3,27 +3,31 @@ package com.assignment.controller;
 import com.assignment.entity.Product;
 import com.assignment.service.ProductService;
 import org.apache.commons.io.FilenameUtils;
-import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.net.MalformedURLException;
+import java.nio.file.*;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -60,36 +64,31 @@ public class ProductController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProducts() {
+    public Response getStudents() {
 
         List<Product> products = productService.getProducts();
         return Response.ok(products).build();
     }
 
-    @GetMapping("/product/{id}")
-    public ResponseEntity<?> getProduct(@PathVariable("id") long id) {
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStudent(@PathParam("id") long id) {
         Product product = productService.findById(id);
         if (product != null)
-            return ResponseEntity.ok(product);
+            return Response.ok(product).build();
         else
             //http code 204
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return Response.status(Response.Status.NO_CONTENT).build();
 
     }
-
     @OPTIONS
     public Response checkOK(){
         return Response.ok().build();
     }
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response uploadOnlyStudent(Product product) {
 
-        productService.addProduct(product);
-        return Response.ok().entity(product).build();
 
-    }
+
 
     @POST
     @Path("/image")
@@ -112,27 +111,21 @@ public class ProductController {
     }
 
 
+
     @POST
-    @Path("/product")
-    @Consumes({MediaType.MULTIPART_FORM_DATA})
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response uploadStudent(@FormDataParam("file") InputStream fileInputStream,
-                                  @FormDataParam("file") FormDataContentDisposition cdh,
-                                  @FormDataParam("product") FormDataBodyPart dataBodyPart) throws Exception {
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    public Product uploadOnlyProduct(@RequestBody Product product) {
 
-        BufferedImage img = ImageIO.read(fileInputStream);
+        productService.addProduct(product);
+        return product;
 
-        dataBodyPart.setMediaType(MediaType.APPLICATION_JSON_TYPE);
-        Product product = dataBodyPart.getValueAs(Product.class);
-        productService.addProduct(product,cdh.getFileName(),img);
-
-        return Response.ok(product).build();
     }
 
     @GET
     @Path("/images/{fileName}")
     @Produces({"image/png", "image/jpg", "image/gif"})
-    public Response getProductImage(@PathParam("fileName") String filename) {
+    public Response getStuentImage(@PathParam("fileName") String filename) {
         File file = Paths.get(imageServerDir + filename).toFile();
         if (file.exists()) {
             Response.ResponseBuilder responseBuilder = Response.ok((Object) file);

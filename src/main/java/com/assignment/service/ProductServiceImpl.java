@@ -69,4 +69,13 @@ public class ProductServiceImpl implements ProductService{
         productDAO.addProduct(product);
         return product;
     }
+
+    @Override
+    public List<Product> queryProduct(String query) {
+        if (query == null || query.equals(""))
+            return productDAO.getProducts();
+        return productDAO.getProducts(query);
+    }
+
+
 }

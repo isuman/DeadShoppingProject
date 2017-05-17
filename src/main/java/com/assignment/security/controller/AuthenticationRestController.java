@@ -1,11 +1,13 @@
 package com.assignment.security.controller;
 
+import com.assignment.config.json.View;
 import com.assignment.entity.Product;
 import com.assignment.security.JwtAuthenticationRequest;
 import com.assignment.security.JwtTokenUtil;
 import com.assignment.security.JwtUser;
 import com.assignment.security.service.JwtAuthenticationResponse;
 import com.assignment.service.ProductService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ public class AuthenticationRestController {
     @Value("${jwt.header}")
     private String tokenHeader;
 
+    @Autowired
     private ProductService productService;
 
     @Autowired
@@ -41,6 +44,8 @@ public class AuthenticationRestController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+
+    @JsonView(View.Login.class)
     @PostMapping("${jwt.route.authentication.path}")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
@@ -69,7 +74,7 @@ public class AuthenticationRestController {
     @GetMapping(value = "${jwt.route.authentication.refresh}")
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
-        String username = jwtTokenUtil.getUsernameFromToken(token);
+        String username = jwtTokenUtil.getUsernameFromToken (token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
