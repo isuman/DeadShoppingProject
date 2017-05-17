@@ -14,8 +14,8 @@ import {ProductsViewComponent} from "./product/view/product.view.component";
 import {ProductDataServerService} from "./service/product-data-server.service";
 import { LoginComponent } from './login/login.component';
 import {AuthenticationService} from "./service/authentication.service";
-import {LoginMenuComponent} from "./login-menu/login-menu.component";
 import {CartComponent}from"./cart/cart.component";
+import {LoginMenuComponent} from "./login-menu/login-menu.component";
 
 
 @NgModule({
