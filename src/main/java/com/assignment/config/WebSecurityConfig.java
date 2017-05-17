@@ -63,7 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/auth/**","/h2-console/**","/refresh","/product/images/**","/product").permitAll()
+                .antMatchers("/auth/**","/h2-console/**","/refresh",
+                        "/product/images/**","/product","/product/**").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter
