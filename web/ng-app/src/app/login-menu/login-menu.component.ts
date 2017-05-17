@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from "../service/authentication.service";
 
 @Component({
   selector: 'app-login-menu',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenService: AuthenticationService) { }
 
   ngOnInit() {
+  }
+  hasRole(role:string){
+    return this.authenService.hasRole(role);
   }
 
 }

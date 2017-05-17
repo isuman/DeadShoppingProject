@@ -7,7 +7,6 @@ import {ProductsViewComponent} from "./view/product.view.component";
 const productRoutes: Routes = [
    {path: 'list', component: ProductsComponent},
   {path: 'detail/:id', component: ProductsViewComponent},
-
   {path: 'add', component: ProductsAddComponent}
 
 
