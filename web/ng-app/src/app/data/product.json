@@ -1,0 +1,21 @@
+{
+  "products":[
+    {
+      "ProductId":"Miku-001",
+      "name":"miku",
+      "image":"images/Hastune_Miku___S_589aa63ba5689.jpg",
+      "ProductAmount":5,
+      "price":20.00,
+      "description":"miku"
+    },
+    {
+      "ProductId":"Maki-001",
+      "name":"Maki",
+      "image":"images/Maki_Nishikino_A_5703e3387162a.jpg",
+      "ProductAmount":5,
+      "price":20.00,
+      "description":"Maki"
+    }
+  ],
+
+}

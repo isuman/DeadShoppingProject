@@ -7,8 +7,8 @@ export class ProductsDataService {
   constructor(private http: Http){}
   getProductsData(){
     let productArray:Product[];
-    return this.http.get('app/data/people.json')
-      .map(res => res.json().students);
+    return this.http.get('app/data/product.json')
+      .map(res => res.json().products);
 
 
   }

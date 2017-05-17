@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import {AuthenticationService} from "./service/authentication.service";
 import {CartComponent}from"./cart/cart.component";
 import {LoginMenuComponent} from "./login-menu/login-menu.component";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {LoginMenuComponent} from "./login-menu/login-menu.component";
         FileNotFoundComponent,
         LoginComponent,
         LoginMenuComponent,
-        CartComponent],
+        CartComponent,
+        CheckoutComponent],
  imports: [BrowserModule,FormsModule, HttpModule,ProductRoutingModule,AppRoutingModule],
  bootstrap: [AppComponent],
   providers:[{ provide:ProductsDataService, useClass: ProductDataServerService},AuthenticationService]
