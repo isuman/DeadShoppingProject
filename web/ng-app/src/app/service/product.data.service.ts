@@ -24,4 +24,8 @@ export class ProductsDataService {
   findProduct(search:string){
     return null;
   }
+
+  addProductWihtAuthen(product:Product,imageFile:any,user:any){
+    return null;
+  }
 }

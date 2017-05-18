@@ -16,11 +16,12 @@ export class ProductsViewComponent {
   }
 
   product: Product;
-
   isNoData:boolean;
+  inputCount: number;
+
   ngOnInit() {
     this.isNoData = false;
-
+    this.inputCount = 15;
     this.route.params
       .switchMap((params:Params) =>  this.productDataService.getProduct(+params['id']))
       .subscribe((product:Product) => {

@@ -31,8 +31,8 @@ export class ProductsAddComponent {
     let inputEl: HTMLInputElement = this.inputEl.nativeElement;
 
     this.productsDataService.addProduct(product,inputEl.files.item(0))
-      .subscribe(resultStudent => {
-        result = resultStudent
+      .subscribe(resultProduct => {
+        result = resultProduct
         if (result != null){
           this.router.navigate(['/list']);
         }else{
